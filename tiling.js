@@ -1824,7 +1824,7 @@ class Spaces extends Map {
         if (selected && selected.fullscreen) {
             Tweener.addTween(selected.clone, {
                 y: Main.panel.actor.height + prefs.vertical_margin,
-                time: prefs.animation_time,
+                time: 0,
             });
         }
     }
@@ -1899,7 +1899,7 @@ class Spaces extends Map {
 
             Tweener.addTween(actor,
                              {y: h*space.height,
-                              time: prefs.animation_time,
+                              time: 0,
                               scale_x: scale + (to - i)*0.01,
                               scale_y: scale + (to - i)*0.01,
                               onComplete
@@ -1981,7 +1981,7 @@ class Spaces extends Map {
                            y: 0,
                            scale_x: 1,
                            scale_y: 1,
-                           time: prefs.animation_time,
+                           time: 0,
                            onComplete
                          });
 
@@ -1995,7 +1995,7 @@ class Spaces extends Map {
             if (!visible.get(space)) {
                 Tweener.addTween(space.actor,
                                  {x: 0, y: space.height + 20,
-                                  time: prefs.animation_time });
+                                  time: 0 });
             }
             above = above.get_next_sibling();
         }
