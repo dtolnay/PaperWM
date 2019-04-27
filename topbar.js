@@ -453,7 +453,7 @@ function enable () {
     menu.actor.show();
 
     // Force transparency
-    Main.panel.actor.set_style('background-color: rgba(0, 0, 0, 0.35);');
+    Main.panel.actor.set_style('background-color: rgba(0, 0, 0, 0.9);');
     [Main.panel._rightCorner, Main.panel._leftCorner]
         .forEach(c => c.actor.opacity = 0);
 
