@@ -933,11 +933,11 @@ class Space extends Array {
     }
 
     setSelectionActive() {
-        this.selection.opacity = 255;
+        this.selection.opacity = 0;
     }
 
     setSelectionInactive() {
-        this.selection.opacity = 140;
+        this.selection.opacity = 0;
     }
 
     setSettings([uuid, settings]) {
@@ -1016,7 +1016,7 @@ box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, .7);
     }
 
     updateName() {
-        if (prefs.use_workspace_name) {
+        if (false && prefs.use_workspace_name) {
             this.label.show();
         } else {
             this.label.hide();
@@ -1096,9 +1096,9 @@ box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, .7);
 
         Tweener.addTween(this.actor,
                         {x: 0, y: 0, scale_x: 1, scale_y: 1,
-                         time});
+                         time: 0});
         Tweener.addTween(clip,
-                         {scale_x: 1, scale_y: 1, time});
+                         {scale_x: 1, scale_y: 1, time: 0});
 
         clip.set_position(monitor.x, monitor.y);
         clip.set_size(monitor.width, monitor.height);
@@ -1565,11 +1565,13 @@ class Spaces extends Map {
         let toSpace = this.spaceOf(to);
         let fromSpace = this.spaceOf(from);
 
+        /*
         if (inPreview === PreviewMode.NONE && toSpace.monitor === fromSpace.monitor) {
             // Only start an animation if we're moving between workspaces on the
             // same monitor
             this._initWorkspaceSequence();
         }
+        */
 
         this.stack = this.stack.filter(s => s !== toSpace);
         this.stack = [toSpace, ...this.stack];
@@ -1844,7 +1846,7 @@ class Spaces extends Map {
         mru = [space, ...mru];
 
         if (!inPreview) {
-            this._initWorkspaceStack();
+            //this._initWorkspaceStack();
         }
 
         let from = mru.indexOf(this.selectedSpace);
@@ -1923,7 +1925,7 @@ class Spaces extends Map {
             ensureViewport(selected, to);
 
         if (from) {
-            from.startAnimate();
+            //from.startAnimate();
         }
 
         let visible = new Map();
@@ -1943,7 +1945,7 @@ class Spaces extends Map {
 
             Tweener.addTween(to.border, {
                 opacity: 0,
-                time: prefs.animation_time,
+                time: 0,
                 onComplete: () => {
                     to.border.hide();
                     to.border.opacity = 255;
@@ -1989,6 +1991,7 @@ class Spaces extends Map {
         // Animate all the spaces above `to` down below the monitor. We get
         // these spaces by looking at siblings of upper most actor, ie. the
         // `clip`. This is done since `this.stack` is already updated.
+        /*
         let above = to.clip.get_next_sibling();
         while (above) {
             let space = above.space;
@@ -1999,7 +2002,7 @@ class Spaces extends Map {
             }
             above = above.get_next_sibling();
         }
-
+        */
     }
 
     addSpace(workspace) {
